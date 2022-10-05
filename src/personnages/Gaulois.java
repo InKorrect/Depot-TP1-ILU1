@@ -27,11 +27,17 @@ public class Gaulois {
 		return "Gaulois [nom=" + nom + ", force=" + force
 				+ ", effetPotion=" + effetPotion + "]";
 	}
+	public void boirePotion(int forcePotion) {
+		effetPotion = forcePotion;
+		parler("Merci Druide, je sens que ma force est "+
+				effetPotion +" fois décuplée. ");
+	}
 	public static void main(String[] args) {
 		Gaulois asterix;
 		asterix = new Gaulois("Astérix", 8);
 		System.out.println(asterix);
 		asterix.parler("Bonjour à tous");
+		asterix.boirePotion(3);
 	}
 	
 }
