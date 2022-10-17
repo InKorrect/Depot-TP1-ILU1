@@ -1,30 +1,48 @@
 package personnages;
 
+
+import personnages.Chef;
+import personnages.Gaulois;
+
 public class Village {
 	private String nom;
 	private Chef chef;
-	private Gaulois[] villageois;
-	private int nbVillageois=0;
+	int nbVillageois = 0;
+	Gaulois[] villageois;
 	
-	public Village(String nom,int nbVillageoisMax) {
+	public Village(String nom, int nbVillageoisMaximum) {
+		this.villageois = new Gaulois[nbVillageoisMaximum];
 		this.nom = nom;
-		villageois=new Gaulois[nbVillageoisMax];
 	}
+
+	public void ajouterHabitant(Gaulois gaulois) {
+		this.villageois[nbVillageois] = gaulois;
+		nbVillageois++;
+	}
+	
+	public Gaulois trouverHabitant(int numeroVillageois) {
+		return villageois[numeroVillageois];
+	}
+	
+	public void afficherVillageois() {
+		System.out.println("Dans village du chef " + this.chef.getNom()
+				         + " vivent les legendaires gaulois :");
+		
+		for (int i = 0 ; i < nbVillageois ; i++){
+			System.out.println("- " + villageois[i].getNom());
+		}
+	}
+	
 	public void setChef(Chef chef) {
 		this.chef = chef;
 	}
-	public String getNom() {
-		return nom;
-	}
 	
-	public void ajouterHabitant(Gaulois gaulois) {
-		villageois[nbVillageois]= (gaulois);
-		nbVillageois+=1;
+
+
+	public String getNom() {
+		// TODO Auto-generated method stub
+		this.nom = nom;
+		return null;
 	}
-	public void trouverHabitant(int numVillageois) {
-		System.out.println(villageois[numVillageois]); 
-	}
-	public static void main(String[] args) {
-		Village village= new Village("Village des Irréductibles",30);
-	}
+
 }
