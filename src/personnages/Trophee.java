@@ -1,7 +1,7 @@
 package personnages;
 
 import personnages.Equipement;
-
+import personnages.Gaulois;
 public class Trophee {
 	private personnages gaulois;
 	private Equipement equipement;
@@ -19,7 +19,7 @@ public class Trophee {
 		return equipement;
 	}
 
-//	public void donnerNom(Gaulois gaulois) {
-//		System.out.println(gaulois.getnom);
-//	}
+	public static void donnerNom(Gaulois gaulois) {
+		System.out.println(gaulois.nom);
+	}
 }

@@ -6,7 +6,7 @@ public class Romain extends personnages {
 	private Equipement[] equipements;
 	private int nbEquipement = 0;
 	private int pos = 0;
-	private boolean DejaVu = false;
+	private boolean dejaVu = false;
 	private static final String ROMAIN = "soldat";
 	
 	public Romain(String nom, int force) {
@@ -20,7 +20,10 @@ public class Romain extends personnages {
 	public String getNom() {
 		return nom;
 	}
-
+	
+	public int getForce() {
+		return force;
+	}
 	public void sEquiper(Equipement equipement) {
 		switch (nbEquipement) {
 		case 2 :
@@ -68,7 +71,12 @@ public class Romain extends personnages {
 		assert force > 0;
 		int oldForce = force;
 		forceCoup = calculResistanceEquipement(forceCoup);
-		force -= forceCoup;
+		if (forceCoup>0) {
+			force -= forceCoup;
+			if (force<0) {
+				force =0;
+			}
+		}
 		// if (force > 0) {
 		// parler("Aïe");
 		// } else {
@@ -118,6 +126,7 @@ public class Romain extends personnages {
 				equipements[i] = null;
 			}
 		}
+		nbEquipement =0;
 		return equipementEjecte;
 	}
 }

@@ -9,6 +9,7 @@ public class Gaulois extends personnages {
 		this.nom = nom;
 		this.force = force;
 	}
+	
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "«" + texte + "»");
 	}
@@ -24,11 +25,13 @@ public class Gaulois extends personnages {
 	//		romain.recevoirCoup(force / 3);
 	//	}
 	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la machoire de " + romain.getNom());
-		Equipement trophees[] = romain.recevoirCoup((force / 3) *
-				effetPotion);
-		for (int i = 0; trophees != null && i < trophees.length; i++, nbTrophees++) {
-			this.mesTrophees[nbTrophees] = trophees[i];
+		if (romain.getForce()>0){
+			System.out.println(nom + " envoie un grand coup dans la machoire de " + romain.getNom());
+			Equipement trophees[] = romain.recevoirCoup((force / 3) *
+					effetPotion);
+			for (int i = 0; trophees != null && i < trophees.length; i++, nbTrophees++) {
+				this.mesTrophees[nbTrophees] = trophees[i];
+			}
 		}
 	}
 	public String toString() {
@@ -40,12 +43,4 @@ public class Gaulois extends personnages {
 		parler("Merci Druide, je sens que ma force est "+
 				effetPotion +" fois décuplee. ");
 	}
-	public static void main(String[] args) {
-		Gaulois asterix;
-		asterix = new Gaulois("Astérix", 8);
-		System.out.println(asterix);
-		asterix.parler("Bonjour à tous");
-		asterix.boirePotion(3);
-	}
-
 }

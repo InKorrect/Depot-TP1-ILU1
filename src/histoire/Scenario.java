@@ -5,11 +5,13 @@ import personnages.Chef;
 import personnages.Druide;
 import personnages.Gaulois;
 import personnages.Romain;
+import personnages.Trophee;
 import personnages.Equipement;
 
 public class Scenario {
 	
 	public static void main(String[] args) {
+		int i=1;
 		// TODO Auto-generated method stub
 		Gaulois asterix = new Gaulois("Asterix",8);
 		Gaulois obelix = new Gaulois("Obelix",25);
@@ -32,7 +34,6 @@ public class Scenario {
 		minus.sEquiper(Equipement.CASQUE);
 		minus.sEquiper(Equipement.BOUCLIER);
 		minus.sEquiper(Equipement.BOUCLIER);
-
 		
 		panoramix.parler("Je vais aller préparer une petite potion...");
 		panoramix.preparerPotion(10);
@@ -41,8 +42,9 @@ public class Scenario {
 		panoramix.booster(asterix);
 		asterix.parler("Bonjour");
 		minus.parler("UN GAU... UN GAUGAU...");
-		asterix.frapper(minus);
-		asterix.frapper(minus);
+		while (minus.getForce()>0) {
+			asterix.frapper(minus);
+		}
 		minus.parler("Trop injuste !");
 	}
 
