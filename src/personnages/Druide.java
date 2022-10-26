@@ -2,7 +2,7 @@ package personnages;
 
 import java.util.Random;
 
-public class Druide {
+public class Druide extends personnages {
 	private String nom;
 	private int effetPotionMin;
 	private int effetPotionMax;
@@ -18,7 +18,7 @@ public class Druide {
 	}
 
 	public void booster(Gaulois gaulois){
-		if (gaulois.getNom() == "Obélix"){
+		if (gaulois.getNom() == "Obelix"){
 			this.parler("Non, Obelix !... Tu n'auras pas de potion magique !"
 					+" (Tu es tombe dedans etant petit)");
 		}
@@ -42,7 +42,7 @@ public class Druide {
 		return nom;
 	}
 	public void parler(String texte) {
-		System.out.println(prendreParole() + " « " + texte +  " »");
+		System.out.println(prendreParole() + " Â« " + texte +  " Â»");
 	}
 	private String prendreParole() {
 		return "Le druide " + nom + " : ";

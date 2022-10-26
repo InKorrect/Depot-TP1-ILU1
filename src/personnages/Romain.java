@@ -1,6 +1,6 @@
 package personnages;
 
-public class Romain {
+public class Romain extends personnages {
 	private String nom;
 	private int force;
 	private Equipement[] equipements;
@@ -11,7 +11,7 @@ public class Romain {
 	
 	public Romain(String nom, int force) {
 		if (force < 0) {
-			System.out.println("la force ne doit pas être negative");
+			System.out.println("la force ne doit pas Ãªtre negative");
 		}
 		this.nom = nom;
 		this.force = force;
@@ -29,7 +29,7 @@ public class Romain {
 		case 1 :
 			if (equipement.toString().equals(equipements[0].toString())) {
 				System.out.println(ROMAIN + this.nom + 
-						" possede deja un" 
+						" possede deja un " 
 						+ equipement.toString() + " !" );
 				break;
 			}
@@ -44,44 +44,44 @@ public class Romain {
 	}
 
 	public void parler(String texte) {
-		System.out.println(prendreParole() + " « " + texte + " »");
+		System.out.println(prendreParole() + "Â«" + texte + "Â»");
 	}
 	private String prendreParole() {
 		return "Le romain " + nom + " : ";
 	}
 	//	public void recevoirCoup(int forceCoup) {
-	//		assert (forceCoup> 0) : "la force du coup ne doit pas être négative";
+	//		assert (forceCoup> 0) : "la force du coup ne doit pas ï¿½tre nï¿½gative";
 	//		int forceInitiale = this.force;
 	//		force -= forceCoup;
 	//		if (force > 0) {
-	//			parler("Aïe");
+	//			parler("AÃ¯e");
 	//		} else {
 	//			parler("J'abandonne...");
 	//		}
-	//		assert (forceInitiale > force) : "la force doit avoir diminuée";
+	//		assert (forceInitiale > force) : "la force doit avoir diminuï¿½e";
 	//
 	//	}
 
 	public Equipement[] recevoirCoup(int forceCoup) {
 		Equipement[] equipementEjecte = null;
-		// précondition
+		// precondition
 		assert force > 0;
 		int oldForce = force;
 		forceCoup = calculResistanceEquipement(forceCoup);
 		force -= forceCoup;
 		// if (force > 0) {
-		// parler("Aïe");
+		// parler("AÃ¯e");
 		// } else {
 		// equipementEjecte = ejecterEquipement();
 		// parler("J'abandonne...");
 		// }
 		if (force==0) {
-			parler("Aïe");}
+			parler("AÃ¯e");}
 		else{
 			equipementEjecte = ejecterEquipement();
 			parler("J'abandonne...");
 		}
-		// post condition la force à diminuer
+		// post condition la force Ã  diminuer
 		assert force < oldForce;
 		return equipementEjecte;
 	}

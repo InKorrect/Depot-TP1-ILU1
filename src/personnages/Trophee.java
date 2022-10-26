@@ -1,26 +1,25 @@
 package personnages;
 
-import personnages.Gaulois;
 import personnages.Equipement;
 
 public class Trophee {
-	private Gaulois gaulois;
+	private personnages gaulois;
 	private Equipement equipement;
 
-	public Trophee(Gaulois gaulois, Equipement equipement) {
+	public Trophee(personnages gaulois, Equipement equipement) {
 		super();
 		this.gaulois = gaulois;
 		this.equipement = equipement;
 	}
 
-	public Gaulois getGaulois() {
+	public personnages getGaulois() {
 		return gaulois;
 	}
 	public Equipement getEquipement() {
 		return equipement;
 	}
 
-//	public void donnerNom(Gaulois) {
-//		
+//	public void donnerNom(Gaulois gaulois) {
+//		System.out.println(gaulois.getnom);
 //	}
 }

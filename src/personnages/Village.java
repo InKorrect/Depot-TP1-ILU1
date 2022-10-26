@@ -2,25 +2,24 @@ package personnages;
 
 
 import personnages.Chef;
-import personnages.Gaulois;
 
 public class Village {
 	private String nom;
 	private Chef chef;
 	int nbVillageois = 0;
-	Gaulois[] villageois;
+	personnages[] villageois;
 	
 	public Village(String nom, int nbVillageoisMaximum) {
-		this.villageois = new Gaulois[nbVillageoisMaximum];
+		this.villageois = new personnages[nbVillageoisMaximum];
 		this.nom = nom;
 	}
 
-	public void ajouterHabitant(Gaulois gaulois) {
+	public void ajouterHabitant(personnages gaulois) {
 		this.villageois[nbVillageois] = gaulois;
 		nbVillageois++;
 	}
 	
-	public Gaulois trouverHabitant(int numeroVillageois) {
+	public personnages trouverHabitant(int numeroVillageois) {
 		return villageois[numeroVillageois];
 	}
 	

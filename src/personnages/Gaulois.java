@@ -1,20 +1,16 @@
 package personnages;
 
-public class Gaulois {
-	private String nom;
+public class Gaulois extends personnages {
 	private int effetPotion = 1;
-	private int force;
 	private int nbTrophees;
 	private Equipement[] mesTrophees  = new Equipement[100];
 	public Gaulois(String nom, int force) {
+		super();
 		this.nom = nom;
 		this.force = force;
 	}
-	public String getNom() {
-		return nom;
-	}
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "« " + texte + "»");
+		System.out.println(prendreParole() + "Â«" + texte + "Â»");
 	}
 	//	private String prendreParole() {
 	//		return "Le gaulois " + nom + " : ";
@@ -23,7 +19,7 @@ public class Gaulois {
 		return "Le gaulois " + nom + " : ";
 	}
 	//	public void frapper(Romain romain) {
-	//		System.out.println(nom + " envoie un grand coup dans la mâchoire de "
+	//		System.out.println(nom + " envoie un grand coup dans la mï¿½choire de "
 	//				+ romain.getNom());
 	//		romain.recevoirCoup(force / 3);
 	//	}
@@ -42,13 +38,13 @@ public class Gaulois {
 	public void boirePotion(int forcePotion) {
 		effetPotion = forcePotion;
 		parler("Merci Druide, je sens que ma force est "+
-				effetPotion +" fois décuplee. ");
+				effetPotion +" fois dÃ©cuplee. ");
 	}
 	public static void main(String[] args) {
 		Gaulois asterix;
-		asterix = new Gaulois("Astérix", 8);
+		asterix = new Gaulois("AstÃ©rix", 8);
 		System.out.println(asterix);
-		asterix.parler("Bonjour à tous");
+		asterix.parler("Bonjour Ã  tous");
 		asterix.boirePotion(3);
 	}
 
