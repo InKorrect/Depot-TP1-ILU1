@@ -3,11 +3,22 @@ package personnages;
 import personnages.Trophee;
 
 public class Musee {
-	private int[] tableau = new int[200];
+	private Trophee[] tableau=new Trophee[200];
 	private int nbTrophee=0;
 	
-	public void donnerTrophees(Gaulois gaulois,Equipement equipement) {
-		tableau[nbTrophee]+=1;
-		nbTrophee += 1;
-	}	
+	public void donnerTrophee(Gaulois gaulois, Equipement equipement) {
+		tableau[nbTrophee]=new Trophee(gaulois, equipement);
+		nbTrophee+=1;
+	}
+	public String extraireInstructionsCaml() {
+		
+		String ral =System.getProperty("line.separator" );
+		String texte= "let musee= ["+ral;
+		for(int i=0;i<nbTrophee;i++) {
+			texte+=tableau[i].donnerNom()+", "+tableau[i].getEquipement().toString()+ral;
+		}
+		
+		return texte+ral+"]";
+	}
+	
 }

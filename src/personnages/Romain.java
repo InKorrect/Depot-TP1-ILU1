@@ -1,22 +1,19 @@
 package personnages;
 
-public class Romain extends personnages {
+public class Romain {
+	
+	
 	private String nom;
 	private int force;
-	private Equipement[] equipements;
-	private int nbEquipement = 0;
-	private int pos = 0;
-	private boolean dejaVu = false;
-	private static final String ROMAIN = "soldat";
+	private Equipement[] equipements= new Equipement[2];
+	private int nbEquipement=0;
+
 	
 	public Romain(String nom, int force) {
-		if (force < 0) {
-			System.out.println("la force ne doit pas être negative");
-		}
-		this.nom = nom;
-		this.force = force;
-		this.equipements = new Equipement[2];
+	this.nom = nom;
+	this.force = force;
 	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -24,109 +21,145 @@ public class Romain extends personnages {
 	public int getForce() {
 		return force;
 	}
-	public void sEquiper(Equipement equipement) {
-		switch (nbEquipement) {
-		case 2 :
-			System.out.println(ROMAIN + this.nom + " est deja bien protege !");
-			break;
-		case 1 :
-			if (equipement.toString().equals(equipements[0].toString())) {
-				System.out.println(ROMAIN + this.nom + 
-						" possede deja un " 
-						+ equipement.toString() + " !" );
-				break;
-			}
-		default :
-			System.out.println(ROMAIN + this.nom 
-					+ " s'equipe avec un " + equipement.toString() 
-					+ " !");
-			this.equipements[nbEquipement] = equipement;
-			nbEquipement++;
-			break;
-		}
-	}
-
+	
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "«" + texte + "»");
+	System.out.println(prendreParole() + "<< " + texte + ">>");
 	}
+	
 	private String prendreParole() {
-		return "Le romain " + nom + " : ";
+	return "Le romain " + nom + " : ";
 	}
-	//	public void recevoirCoup(int forceCoup) {
-	//		assert (forceCoup> 0) : "la force du coup ne doit pas �tre n�gative";
-	//		int forceInitiale = this.force;
-	//		force -= forceCoup;
-	//		if (force > 0) {
-	//			parler("Aïe");
-	//		} else {
-	//			parler("J'abandonne...");
-	//		}
-	//		assert (forceInitiale > force) : "la force doit avoir diminu�e";
-	//
-	//	}
-
+	
+//	public void recevoirCoup(int forceCoup) {
+//	force -= forceCoup;
+//	if (force > 0) {
+//		parler("A�e");
+//		}
+//	else {
+//		parler("J'abandonne...");
+//		}
+//	}
 	public Equipement[] recevoirCoup(int forceCoup) {
 		Equipement[] equipementEjecte = null;
-		// precondition
+		// pr�condition
 		assert force > 0;
 		int oldForce = force;
 		forceCoup = calculResistanceEquipement(forceCoup);
-		if (forceCoup>0) {
-			force -= forceCoup;
-			if (force<0) {
-				force =0;
-			}
-		}
+		force -= forceCoup;
 		// if (force > 0) {
-		// parler("Aïe");
+		// parler("A�e");
 		// } else {
 		// equipementEjecte = ejecterEquipement();
 		// parler("J'abandonne...");
 		// }
 		if (force==0) {
-			parler("Aïe");}
-		else{
-			equipementEjecte = ejecterEquipement();
-			parler("J'abandonne...");
+			
+				parler("Aie");
+		}else {
+				equipementEjecte = ejecterEquipement();
+				parler("J'abandonne...");
 		}
-		// post condition la force à diminuer
+				
+			// post condition la force � diminuer
 		assert force < oldForce;
 		return equipementEjecte;
-	}
+		}
+	
+	
+	
 	private int calculResistanceEquipement(int forceCoup) {
 		String texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoup;
 		int resistanceEquipement = 0;
 		if ((nbEquipement != 0)) {
 			texte += "\nMais heureusement, grace a mon equipement sa force est diminue de ";
-			for (int i = 0; i < nbEquipement;) {
-				if ((equipements[i] != null &&
-						equipements[i].equals(Equipement.BOUCLIER)) == true) {
-					resistanceEquipement += 8;
-				} else {
-					System.out.println("Equipement casque");
-					resistanceEquipement += 5;
+			for (int i = 0; i < nbEquipement; i++) {
+//				if ((equipements[i] != null &&
+//					equipements[i].equals(Equipement.BOUCLIER))) {
+//					resistanceEquipement += 8;
+//				} else {
+//					System.out.println("Equipement casque");
+//					resistanceEquipement += 5;
+//					}
+				if(equipements[i]!=null) {
+					switch (equipements[i])
+						{
+						case BOUCLIER:
+							resistanceEquipement+=8;
+							break;
+						
+						case CASQUE: 
+							resistanceEquipement+=5;
+							break;
+						
+						default: 
+							break;
+						}	
+					}
 				}
-				i++;
+				texte += resistanceEquipement + "!";
 			}
-			texte += resistanceEquipement + "!";
+			parler(texte);
+			forceCoup -= resistanceEquipement;
+			return forceCoup;
 		}
-		parler(texte);
-		forceCoup -= resistanceEquipement;
-		return forceCoup;
-	}
+
 	private Equipement[] ejecterEquipement() {
 		Equipement[] equipementEjecte = new Equipement[nbEquipement];
-		System.out.println("L'equipement de " + nom + "s'envole sous la force du coup.");
+		System.out.println("L'equipement de " + nom + "s envole sous la force du coup.");
 		int nbEquipementEjecte = 0;
 		for (int i = 0; i < nbEquipement; i++) {
 			if (equipements[i] != null) {
-				equipementEjecte[nbEquipementEjecte] =
-						equipements[i];
+				equipementEjecte[nbEquipementEjecte] =equipements[i];
 				nbEquipementEjecte++;
 				equipements[i] = null;
+				}
 			}
+			return equipementEjecte;
 		}
-		nbEquipement =0;
-		return equipementEjecte;
+
+	public void sEquiper(Equipement equipement) {
+			switch (nbEquipement) 
+			{		
+				case 0 :
+					equipements[0]=equipement;
+					System.out.println("Le soldat "+nom+" s'equipe d'un "+equipement.toString());
+					nbEquipement=1;
+					break;
+				case 1:
+					if (equipements[0].toString()==equipement.toString())
+					{
+						System.out.println("Le soldat "+nom+" possede deja� un "+equipement.toString());
+					}
+					else {
+						equipements[1]= equipement;;
+						nbEquipement=2;
+						System.out.println("Le soldat "+nom+" s'equipe d'un "+equipement.toString());
+					}
+					break;
+					
+				default:
+					System.out.println("Le soldat "+nom+" est d�j� bien prot�g�");
+					break;
+			}		
+	}
+	
+	public static void main(String[] args) {
+		Romain minus = new Romain("Minus",6);
+		
+		//Test prendreParole
+		System.out.println(minus.prendreParole());
+		
+		//Test parler
+		minus.parler("Bonjour");
+		
+		//Test frapper
+		minus.recevoirCoup(2);
+		minus.recevoirCoup(1000);
+		
+		//Test sEquiper
+		minus.sEquiper(Equipement.CASQUE);
+		minus.sEquiper(Equipement.CASQUE);
+		minus.sEquiper(Equipement.BOUCLIER);
+		minus.sEquiper(Equipement.CASQUE);
 	}
 }
